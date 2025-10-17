@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Person</title>
+</head>
+<body>
+    <h1>Edit Person</h1>
+    <form action="/add-person" th:object="${person}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" th:field="*{firstName}" />
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" th:field="*{lastName}" />
+        </div>
+        <div>
+            <label for="middleName">Middle Name:</label>
+            <input type="text" id="middleName" name="middleName" th:field="*{middleName}" />
+        </div>
+        <div>
+            <button type="submit">Update</button>
+        </div>
+    </form>
+</body>
+</html>
