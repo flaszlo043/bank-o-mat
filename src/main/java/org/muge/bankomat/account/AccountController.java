@@ -20,6 +20,6 @@ public class AccountController {
     public String getAccountsByCompany(@PathVariable Long companyId, Model model) {
         model.addAttribute("accounts", accountRepository.findByCompanyId(companyId));
         companyRepository.findById(companyId).ifPresent(company -> model.addAttribute("company", company));
-        return "account-list";
+        return "account/account-list";
     }
 }
