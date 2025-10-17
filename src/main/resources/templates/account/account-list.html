@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account List</title>
+</head>
+<body>
+    <h1 th:text="${company.id} +' '+ ${company.name} + ' Accounts'"></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Number</th>
+                <th>Available Balance</th>
+                <th>Current Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="account : ${accounts}">
+                <td th:text="${account.name}"></td>
+                <td th:text="${account.type}"></td>
+                <td th:text="${account.number}"></td>
+                <td th:text="${account.availableBalance}"></td>
+                <td th:text="${account.currentBalance}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

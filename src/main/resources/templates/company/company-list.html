@@ -13,12 +13,19 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="company : ${companies}">
+                <td th:text="${company.id}"></td>
                 <td th:text="${company.name}"></td>
+                <td>
+                    <a th:href="@{/edit-company/{id}(id=${company.id})}">Edit</a>
+                    <a th:href="@{/company/{companyId}/accounts(companyId=${company.id})}">View Accounts</a>
+                </td>
             </tr>
         </tbody>
     </table>

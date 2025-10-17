@@ -17,13 +17,13 @@ public class PersonController {
     @GetMapping("/person-list")
     public String getPersonList(Model model) {
         model.addAttribute("persons", personRepository.findAll());
-        return "person-list";
+        return "person/person-list";
     }
 
     @GetMapping("/add-person")
     public String addPersonForm(Model model) {
         model.addAttribute("person", new Person());
-        return "add-person";
+        return "person/add-person";
     }
 
     @PostMapping("/add-person")
@@ -36,6 +36,6 @@ public class PersonController {
     public String editPersonForm(@PathVariable Long id, Model model) {
         Person person = personRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
         model.addAttribute("person", person);
-        return "add-person";
+        return "person/add-person";
     }
 }
