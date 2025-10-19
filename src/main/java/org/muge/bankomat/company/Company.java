@@ -15,8 +15,13 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_seq")
-    @SequenceGenerator(name = "company_seq", sequenceName = "customer_seq", allocationSize = 1)
+    @SequenceGenerator(name = "company_seq", sequenceName = "company_seq", allocationSize = 1)
     private Long id;
+
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
+    @SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq", allocationSize = 1)
+    private Long customerId;
 
     private String name;
 
@@ -45,5 +50,13 @@ public class Company {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

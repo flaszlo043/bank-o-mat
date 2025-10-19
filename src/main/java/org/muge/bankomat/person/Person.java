@@ -2,14 +2,21 @@ package org.muge.bankomat.person;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 public class Person {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
     private Long id;
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
+    @SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq", allocationSize = 1)
+    private Long customerId;
 
     private String firstName;
     private String lastName;
@@ -45,5 +52,13 @@ public class Person {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

@@ -22,7 +22,9 @@ public class PersonController {
 
     @GetMapping("/add-person")
     public String addPersonForm(Model model) {
-        model.addAttribute("person", new Person());
+        var person = new Person();
+        personRepository.save(person);
+        model.addAttribute("person", person);
         return "person/add-person";
     }
 
@@ -32,10 +34,10 @@ public class PersonController {
         return "redirect:/person-list";
     }
 
+
     @GetMapping("/edit-person/{id}")
     public String editPersonForm(@PathVariable Long id, Model model) {
-        Person person = personRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
-        model.addAttribute("person", person);
+        personRepository.findById(id).ifPresent(person -> model.addAttribute("person", person));
         return "person/add-person";
     }
 }

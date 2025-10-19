@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit Person</title>
+    <title>Add Person</title>
 </head>
 <body>
-    <h1>Edit Person</h1>
+    <h1>Add Person</h1>
     <form action="/add-person" th:object="${person}" method="post">
-        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label for="customerId">ID:</label>
+            <input type="text" id="customerId" th:field="*{customerId}" />
+        </div>
         <div>
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" th:field="*{firstName}" />
@@ -20,7 +23,7 @@
             <input type="text" id="middleName" name="middleName" th:field="*{middleName}" />
         </div>
         <div>
-            <button type="submit">Update</button>
+            <button type="submit">Save</button>
         </div>
     </form>
 </body>
