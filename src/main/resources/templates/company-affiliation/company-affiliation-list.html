@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Company Affiliations</title>
+</head>
+<body>
+    <div>
+        <a href="/person-list">Person</a>
+        <a href="/company-list">Company</a>
+    </div>
+<hr>
+    <div>
+        <a th:href="@{/person/{personId}(personId=${person.id})}">&lt;&lt; Back to Person</a>
+    </div>
+    <h1 th:text="${person.id} +' '+ ${person.name} + ' Affiliations'"></h1>
+    
+    <a th:href="@{/person/{personId}/companyAffiliations/new(personId=${person.id})}">Add to Company</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="companyAffiliation : ${companyAffiliations}">
+                <td th:text="${companyAffiliation.companyName}"></td>
+                <td th:text="${companyAffiliation.type}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

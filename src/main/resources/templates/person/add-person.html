@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Person</title>
+    <title>Add Person</title>
 </head>
 <body>
-    <h1 th:text="${person.name} + ' ' + ${person.id}"></h1>
-    <form th:action="@{/person/{id}(id=${person.id})}" th:object="${person}" method="post">
+    <h1>Add Person</h1>
+    <form th:action="@{/person/new}" th:object="${person}" method="post">
         <div>
             <label for="id">ID:</label>
             <input type="text" id="id" th:field="*{id}" readonly />
@@ -26,7 +26,5 @@
             <button type="submit">Save</button>
         </div>
     </form>
-
-    <a th:href="@{/person/{personId}/companyAffiliations(personId=${person.id})}">[Manage Company Affiliations]</a>
 </body>
 </html>

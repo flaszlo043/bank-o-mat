@@ -18,6 +18,10 @@ public class Person {
     private String lastName;
     private String middleName;
 
+    public String getName() {
+        return lastName + " " + firstName;       
+    }
+
     public Long getId() {
         return id;
     }

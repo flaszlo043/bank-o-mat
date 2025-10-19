@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Affiliation</title>
+</head>
+<body>
+    <h1 th:text="'Add Affiliation for ' + ${person.name}"></h1>
+    <form th:action="@{/person/{personId}/companyAffiliations/new(personId=${person.id})}" th:object="${affiliation}" method="post">
+        <div>
+            <label for="company">Company:</label>
+            <select id="company" th:field="*{company}">
+                <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.name}"></option>
+            </select>
+        </div>
+        <div>
+            <label for="relationType">Relation Type:</label>
+            <select id="relationType" th:field="*{relationType}">
+                <option th:each="type : ${relationTypes}" th:value="${type}" th:text="${type}"></option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Add</button>
+        </div>
+    </form>
+</body>
+</html>
