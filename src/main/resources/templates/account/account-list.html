@@ -4,7 +4,16 @@
     <title>Account List</title>
 </head>
 <body>
+    <div>
+        <a href="/person-list">Person</a>
+        <a href="/company-list">Company</a>
+    </div>
+<hr>
+    <div>
+        <a th:href="@{/edit-company/{id}(id=${company.id})}">&lt;&lt; Back to Company</a>
+    </div>
     <h1 th:text="${company.id} +' '+ ${company.name} + ' Accounts'"></h1>
+    
     <a th:href="@{/company/{companyId}/add-account(companyId=${company.id})}">Add Account</a>
     <table>
         <thead>

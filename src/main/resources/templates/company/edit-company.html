@@ -4,6 +4,10 @@
     <title>Edit Company</title>
 </head>
 <body>
+    <div>
+        <a href="/person-list">Person</a>
+        <a href="/company-list">Company</a>
+    </div>
     <h1>Edit Company</h1>
     <form th:action="@{/edit-company/{id}(id=${company.id})}" th:object="${company}" method="post">
         <div>
@@ -18,5 +22,6 @@
             <button type="submit">Update</button>
         </div>
     </form>
+    <a th:href="@{/company/{companyId}/accounts(companyId=${company.id})}">Manage Accounts</a>
 </body>
 </html>
