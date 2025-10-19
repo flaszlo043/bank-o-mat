@@ -69,4 +69,14 @@ public class CompanyAffiliation {
     public void setRelationType(RelationType relationType) {
         this.relationType = relationType;
     }
+
+    @Override
+    public String toString() {
+        return "CompanyAffiliation{" +
+                "id=" + id +
+                ", person=" + person +
+                ", company=" + company +
+                ", relationType=" + relationType +
+                '}';
+    }
 }

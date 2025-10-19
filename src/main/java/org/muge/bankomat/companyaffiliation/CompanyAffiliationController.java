@@ -2,8 +2,6 @@ package org.muge.bankomat.companyaffiliation;
 
 import java.util.Optional;
 
-import org.muge.bankomat.account.Account;
-import org.muge.bankomat.account.AccountRepository;
 import org.muge.bankomat.company.CompanyRepository;
 import org.muge.bankomat.person.Person;
 import org.muge.bankomat.person.PersonRepository;
@@ -57,7 +55,12 @@ public class CompanyAffiliationController {
 
     @PostMapping("/person/{personId}/companyAffiliations/new")
     public String addCompanyAffiliationToPerson(@PathVariable Long personId, @ModelAttribute CompanyAffiliation companyAffiliation) {
-        companyAffiliationRepository.save(companyAffiliation);
+        Optional<Person> person = personRepository.findById(personId);
+        person.ifPresent(prs -> {
+            companyAffiliation.setPerson(prs);
+            companyAffiliationRepository.save(companyAffiliation);
+        });
+
         return "redirect:/person/" + personId + "/companyAffiliations";
     }
 }
