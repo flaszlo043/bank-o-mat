@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1 th:text="${company.id} +' '+ ${company.name} + ' Accounts'"></h1>
+    <a th:href="@{/company/{companyId}/add-account(companyId=${company.id})}">Add Account</a>
     <table>
         <thead>
             <tr>
