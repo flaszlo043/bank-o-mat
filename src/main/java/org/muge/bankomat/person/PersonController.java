@@ -25,7 +25,7 @@ public class PersonController {
         var person = new Person();
         personRepository.save(person);
         model.addAttribute("person", person);
-        return "person/add-person";
+        return "person/person";
     }
 
     @PostMapping("/add-person")
@@ -38,6 +38,6 @@ public class PersonController {
     @GetMapping("/edit-person/{id}")
     public String editPersonForm(@PathVariable Long id, Model model) {
         personRepository.findById(id).ifPresent(person -> model.addAttribute("person", person));
-        return "person/add-person";
+        return "person/person";
     }
 }
