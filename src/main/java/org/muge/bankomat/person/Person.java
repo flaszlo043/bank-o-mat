@@ -4,7 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
+import org.muge.bankomat.companyaffiliation.CompanyAffiliation;
+
+import java.util.List;
 
 @Entity
 public class Person {
@@ -18,8 +22,11 @@ public class Person {
     private String lastName;
     private String middleName;
 
+    @OneToMany(mappedBy = "person")
+    private List<CompanyAffiliation> affiliations;
+
     public String getName() {
-        return lastName + " " + firstName;       
+        return lastName + " " + firstName;
     }
 
     public Long getId() {
@@ -52,5 +59,13 @@ public class Person {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    public List<CompanyAffiliation> getAffiliations() {
+        return affiliations;
+    }
+
+    public void setAffiliations(List<CompanyAffiliation> affiliations) {
+        this.affiliations = affiliations;
     }
 }
