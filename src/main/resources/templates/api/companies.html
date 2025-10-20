@@ -1,0 +1,25 @@
+<companies xmlns:th="http://www.thymeleaf.org">
+    <company th:each="company : ${companies}">
+        <id th:text="${company.id}"></id>
+        <name th:text="${company.name}"></name>
+        <accounts>
+            <account th:each="account : ${company.accounts}">
+                <id th:text="${account.id}"></id>
+                <name th:text="${account.name}"></name>
+                <type th:text="${account.type}"></type>
+                <number th:text="${account.number}"></number>
+                <availableBalance th:text="${account.availableBalance}"></availableBalance>
+                <currentBalance th:text="${account.currentBalance}"></currentBalance>
+            </account>
+        </accounts>
+        <people>
+            <person th:each="affiliation : ${company.affiliations}">
+                <id th:text="${affiliation.person.id}"></id>
+                <firstName th:text="${affiliation.person.firstName}"></firstName>
+                <lastName th:text="${affiliation.person.lastName}"></lastName>
+                <middleName th:text="${affiliation.person.middleName}"></middleName>
+                <relationType th:text="${affiliation.relationType}"></relationType>
+            </person>
+        </people>
+    </company>
+</companies>

@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import org.muge.bankomat.account.Account;
+import org.muge.bankomat.companyaffiliation.CompanyAffiliation;
 
 import java.util.List;
 
@@ -22,6 +23,9 @@ public class Company {
 
     @OneToMany(mappedBy = "company")
     private List<Account> accounts;
+
+    @OneToMany(mappedBy = "company")
+    private List<CompanyAffiliation> affiliations;
 
     public Long getId() {
         return id;
@@ -45,5 +49,13 @@ public class Company {
 
     public void setAccounts(List<Account> accounts) {
         this.accounts = accounts;
+    }
+
+    public List<CompanyAffiliation> getAffiliations() {
+        return affiliations;
+    }
+
+    public void setAffiliations(List<CompanyAffiliation> affiliations) {
+        this.affiliations = affiliations;
     }
 }

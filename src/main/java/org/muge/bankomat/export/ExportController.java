@@ -120,6 +120,7 @@ public class ExportController {
                 .body(csv);
     }
 
+/*
     @PostMapping("/import/accounts/csv")
     public void importAccountsFromCsv(@RequestBody String csv, @RequestParam(name = "delete", required = false, defaultValue = "false") boolean delete) throws IOException {
         if (delete) {
@@ -128,6 +129,7 @@ public class ExportController {
         List<Account> accounts = CsvUtils.fromCsvAccounts(csv, personRepository);
         accountRepository.saveAll(accounts);
     }
+*/
 
     @PostMapping("/import/companies/csv")
     public void importCompaniesFromCsv(@RequestBody String csv, @RequestParam(name = "delete", required = false, defaultValue = "false") boolean delete) throws IOException {
