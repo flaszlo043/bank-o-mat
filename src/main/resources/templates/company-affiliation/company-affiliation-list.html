@@ -20,12 +20,16 @@
             <tr>
                 <th>Name</th>
                 <th>Type</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="companyAffiliation : ${companyAffiliations}">
                 <td th:text="${companyAffiliation.companyName}"></td>
                 <td th:text="${companyAffiliation.type}"></td>
+                <td>
+                    <a th:href="@{/person/{personId}/companyAffiliations/{affiliationId}(personId=${companyAffiliation.person.id}, affiliationId=${companyAffiliation.id})}">Edit</a>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,5 @@
 package org.muge.bankomat.person;
 
-import java.util.Optional;
 
 import org.muge.bankomat.company.CompanyRepository;
 import org.muge.bankomat.companyaffiliation.CompanyAffiliation;
@@ -22,9 +21,6 @@ public class PersonController {
 
     @Autowired
     private CompanyRepository companyRepository;
-
-    @Autowired
-    private CompanyAffiliationRepository companyAffiliationRepository;
 
     @GetMapping("/person-list")
     public String getPersonList(Model model) {
@@ -59,19 +55,5 @@ public class PersonController {
         personRepository.save(person);
         return "redirect:/person-list";
     }
-
-
-    @GetMapping("/person/{personId}/add-affiliation")
-    public String addAffiliationForm(@PathVariable Long personId, Model model) {
-        personRepository.findById(personId).ifPresent(person -> {
-            model.addAttribute("person", person);
-            model.addAttribute("companies", companyRepository.findAll());
-            model.addAttribute("affiliation", new CompanyAffiliation());
-            model.addAttribute("relationTypes", RelationType.values());
-        });
-        return "person/add-affiliation";
-    }
-
-
 
 }

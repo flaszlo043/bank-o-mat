@@ -2,6 +2,7 @@ package org.muge.bankomat.companyaffiliation;
 
 import java.util.Optional;
 
+import org.muge.bankomat.company.Company;
 import org.muge.bankomat.company.CompanyRepository;
 import org.muge.bankomat.person.Person;
 import org.muge.bankomat.person.PersonRepository;
@@ -63,4 +64,47 @@ public class CompanyAffiliationController {
 
         return "redirect:/person/" + personId + "/companyAffiliations";
     }
+
+    @GetMapping("/person/{personId}/companyAffiliations/{affiliationId}")
+    public String getCompanyAffiliationByPersonAndAffilationId(
+        @PathVariable Long personId, @PathVariable Long affiliationId, Model model) {
+        
+        System.out.println("\n\naffiliationId: " + affiliationId + "\n\n");
+        Optional<CompanyAffiliation> affiliation = companyAffiliationRepository.findById(affiliationId);
+        affiliation
+            .ifPresent( aff -> {
+                model.addAttribute("companyAffiliation", aff);
+                System.out.println("\n\n======\n companyAffiliation:" + aff + "\n==========\n\n");
+                Company company = aff.getCompany();
+                System.out.println("\n\n======\n company:" + company + "\n==========\n\n");
+                
+                Optional<Company> oCompany = companyRepository.findById(2L);
+                System.out.println("\n\n======\nc ompanyAffiliation:" + aff + "\n==========\n\n");
+                oCompany.ifPresent( cpny -> {
+                    System.out.println("\n\n======\n oCompany:" + cpny + "\n==========\n\n");
+                    aff.setCompany(cpny);
+                });
+                System.out.println("\n\n======\nc ompanyAffiliation:" + aff + "\n==========\n\n");
+                
+                var companies = companyRepository.findAll();
+                System.out.println("\n\n======\n companies:" + companies + "\n==========\n\n");
+                model.addAttribute("companies", companies);
+                model.addAttribute("relationTypes", RelationType.values());
+
+        } );
+        return "company-affiliation/edit-company-affiliation";
+    }
+
+
+    @PostMapping("/person/{personId}/companyAffiliations/{affiliationId}")
+    public String saveCompanyAffiliationByPersonAndAffilationId(@PathVariable Long personId, @PathVariable Long affiliationId, @ModelAttribute CompanyAffiliation companyAffiliation) {
+        Optional<Person> person = personRepository.findById(personId);
+        person.ifPresent(prs -> {
+            companyAffiliation.setPerson(prs);
+            companyAffiliationRepository.save(companyAffiliation);
+        });
+
+        return "redirect:/person/" + personId + "/companyAffiliations";
+    }
+
 }
